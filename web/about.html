@@ -118,14 +118,6 @@
         <script src="./js/playground.js" type="module"></script>
 
         <script>
-            function openCloseMenu() {
-                var toolBar = document.getElementById("toolBar");
-                var mainContent = document.querySelector(".content") || document.querySelector(".container") || document.querySelector("#tool_set");
-                toolBar.classList.toggle("sidebar-open");
-                if (mainContent) {
-                    mainContent.classList.toggle("shift");
-                }
-            }
             fetch('footer.html')
             .then(response => response.text())
             .then(data => {

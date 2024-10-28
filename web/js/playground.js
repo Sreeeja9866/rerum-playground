@@ -7,7 +7,6 @@ import { default as UTILS } from 'https://centerfordigitalhumanities.github.io/r
 
 import PLAYGROUND from './config.js';
 import ToolsCatalog from './tools.js';
-import { storeManifestLink, getStoredManifestLinks } from './manifestStorage.js';
 
 const RECENTLY_USED_KEY = 'recentlyUsedTools';
 
@@ -201,3 +200,45 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Error initializing the playground: ", err);
     }
 });    
+
+/**
+ * Save the given manifest link to local storage.
+ */
+const MANIFEST_LINKS_KEY ='storedManifestLinks';
+
+export function storeManifestLink(manifestLink) {
+    let manifestLinks = getStoredManifestLinks();
+
+    if (!manifestLinks.includes(manifestLink)) {
+        manifestLinks.push(manifestLink);
+    }
+
+    // save updated links array to local storage
+    localStorage.setItem(MANIFEST_LINKS_KEY, JSON.stringify(manifestLinks));
+}
+
+export function getStoredManifestLinks() {
+    // get the stored links from local storage, or return an empty array if none are found
+    const manifestLinks = localStorage.getItem(MANIFEST_LINKS_KEY);
+    return manifestLinks ? JSON.parse(manifestLinks) : [];
+}
+
+//Opens and closes sidebar menu on each page.
+function openCloseMenu() {
+    var toolBar = document.getElementById("toolBar");
+    var mainContent = document.querySelector(".content") || document.querySelector(".container") || document.querySelector("#tool_set");
+    toolBar.classList.toggle("sidebar-open");
+    if (mainContent) {
+        mainContent.classList.toggle("shift");
+    }
+}
+
+//Loads page footer on each page.
+/*function loadFooter(){
+fetch('footer.html')
+.then(response => response.text())
+.then(data => {
+    document.getElementById('footer-placeholder').innerHTML = data;
+})
+.catch(error => console.error('Error loading footer:', error));
+}*/

@@ -66,7 +66,7 @@ and open the template in the editor.
                 <div class = "row">
                     <button 
                         style="font-size:40px;cursor:pointer;padding:8px 0px 0px 25px;background:none;border:none;" 
-                        onclick="openCloseMenu()" 
+                        onclick="openCloseMenu()"
                         aria-label="Toggle Menu"
                     >
                         &#9776;
@@ -89,16 +89,7 @@ and open the template in the editor.
 
         <script src="./js/playground.js" type="module"></script>
 
-        <!--Function to open and close sidebar menu by changing its width. Needs work.-->
         <script>
-            function openCloseMenu() {
-                var toolBar = document.getElementById("toolBar");
-                var mainContent = document.querySelector(".content") || document.querySelector(".container") || document.querySelector("#tool_set");
-                toolBar.classList.toggle("sidebar-open");
-                if (mainContent) {
-                    mainContent.classList.toggle("shift");
-                }
-            }
             fetch('footer.html')
             .then(response => response.text())
             .then(data => {
